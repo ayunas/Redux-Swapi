@@ -4,20 +4,23 @@ import Character from "./Character";
 
 
 const CharacterList = props => {
+  console.log("CharacterList props: ", props);
+
   return (
     <ul>
-      {/* {props.characters.map(character => {
-        return <Character key={character.name} character={character} />;
-      })} */}
-      <p>testing startwars SWAPI</p>
+      {props.starwars.map( jedi => {
+        return <Character key={jedi.name} character={jedi} />;
+      })}
     </ul>
   );
 };
 
 function mapStateToProps(state) {
-
-    return null;
+    console.log(state);
+    return {
+      starwars : state.charsReducer.characters
+      // starwars : state.characters
+    }
 }
 
-
-export default connect(mapStateToProps,null)(CharacterList);
+export default connect(mapStateToProps,{})(CharacterList);
