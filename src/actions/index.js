@@ -10,10 +10,11 @@ import axios from 'axios';
 
 export function getStarWarsApi(url) {
     return (dispatch) => {
-        dispatch( { type: 'FETCHING' } );
+        dispatch( { type: 'FETCH' } );
         axios.get(url)
              .then( res => {
                  console.log(res.data);
+                 dispatch({type: "SUCCEED", payload: res.data.results});
              })
              .catch( err => {
                  console.log(err);
@@ -21,23 +22,23 @@ export function getStarWarsApi(url) {
     }
 }
 
-export function fetching() {
-    return {
-        type: "FETCHING"
-    }
-}
+// export function fetching() {
+//     return {
+//         type: "FETCHING"
+//     }
+// }
 
-export function succeed() {
-    return {
-        type: "SUCCEED"
-    }
-}
+// export function succeed() {
+//     return {
+//         type: "SUCCEED"
+//     }
+// }
 
 
-export function fail() {
+// export function fail() {
 
-    return {
-        type: "FAIL"
-    }
+//     return {
+//         type: "FAIL"
+//     }
 
-}
+// }
