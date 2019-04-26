@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import Character from "./Character";
+import Loader from 'react-loader-spinner';
 
 
 const CharacterList = props => {
@@ -11,6 +12,12 @@ const CharacterList = props => {
       {props.starwars.map( jedi => {
         return <Character key={jedi.name} character={jedi} />;
       })}
+      {/* <Loader type="Ball-Triangle" color="#00BFFF" height="100"	width="100"/> */}
+      { props.fetching && <Loader type="ThreeDots" color="#00BFFF" height="50"	width="50"/> }
+      {props.fetching && <span>Loading... Please Wait...</span>}
+      {/* <Loader type="ThreeDots" color="#00BFFF" height="50"	width="50"/> */}
+      {/* if fething is true , render loader.
+      props.isFetching && Loader Spinner */}
     </ul>
   );
 };
@@ -18,8 +25,8 @@ const CharacterList = props => {
 function mapStateToProps(state) {
     console.log(state);
     return {
-      starwars : state.charsReducer.characters
-      // starwars : state.characters
+      starwars : state.charsReducer.characters,
+      fetching : state.charsReducer.fetching
     }
 }
 
